@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\VoyagesController;
+use App\Models\Voyage;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/', function() {
+    return ['message' => 'Hello World'];
 });
+
+Route::get('voyages', [VoyagesController::class, 'displayAll']);
+
+Route::post('voyages', [VoyagesController::class, 'createVoyage']);
+
+Route::put('voyages/{voyage-id}', [VoyagesController::class, 'updateVoyage']);
